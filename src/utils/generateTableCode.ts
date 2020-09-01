@@ -10,7 +10,7 @@ export default function generateTableCode({
   abbreviation,
 }: Params) {
   return `begin
-  execute immediate 'create table owner.nome_tabela (
+  execute immediate 'create table ${owner}.${name} (
                        cod_gestao     integer not null,
                        nome_tabela_id integer not null,
                        user_insert    varchar2(30) default user not null,
@@ -28,25 +28,25 @@ end;
 /
 /
 -- comments
-comment on column owner.nome_tabela.cod_gestao
+comment on column ${owner}.${name}.cod_gestao
  is 'código gestão do kss';
-comment on column owner.nome_tabela.nome_tabela_id
+comment on column ${owner}.${name}.${name}
  is 'identificador';
-comment on column owner.nome_tabela.user_insert
+comment on column ${owner}.${name}.user_insert
  is 'auditoria';
-comment on column owner.nome_tabela.date_insert
+comment on column ${owner}.${name}.date_insert
  is 'auditoria';
-comment on column owner.nome_tabela.user_update
+comment on column ${owner}.${name}.user_update
  is 'auditoria';
-comment on column owner.nome_tabela.date_update
+comment on column ${owner}.${name}.date_update
  is 'auditoria';
 
 -- keys
 begin
   -- Primary
   begin
-     execute immediate 'alter table owner.nome_tabela
-                        add constraint pkc_xxx primary key (nome_tabela_id, cod_gestao)
+     execute immediate 'alter table ${owner}.${name}
+                        add constraint pkc_${abbreviation} primary key (${name}_id, cod_gestao)
                         deferrable';
   exception
      when others then
@@ -56,8 +56,8 @@ begin
   end;
   -- Unique
   begin
-     execute immediate 'alter table owner.nome_tabela
-                        add constraint ukc_xxx unique ()
+     execute immediate 'alter table ${owner}.${name}
+                        add constraint ukc_${abbreviation} unique ()
                         deferrable';
   exception
      when others then
@@ -67,8 +67,8 @@ begin
   end;
   -- Check
   begin
-     execute immediate 'alter table owner.nome_tabela
-                        add constraint cc_xxx_01 check ()
+     execute immediate 'alter table ${owner}.${name}
+                        add constraint cc_${abbreviation}_01 check ()
                         deferrable';
   exception
      when others then
