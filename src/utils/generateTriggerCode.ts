@@ -14,9 +14,9 @@ export default function generateTriggerCode({
  referencing old as old new as new
  for each row
 begin
-   if nvl(:new.${name}, 0) <= 0 then
+   if nvl(:new.${name}_id, 0) <= 0 then
       select ${owner}.sqe_${abbreviation}.nextval
-       into :new.${name}
+       into :new.${name}_id
        from dual;
    end if;
 end;

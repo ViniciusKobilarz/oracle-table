@@ -12,7 +12,7 @@ export default function generateTableCode({
   return `begin
   execute immediate 'create table ${owner}.${name} (
                        cod_gestao     integer not null,
-                       nome_tabela_id integer not null,
+                       ${name}_id     integer not null,
                        user_insert    varchar2(30) default user not null,
                        date_insert    date default sysdate not null,
                        user_update    varchar2(30) default user not null,
@@ -26,11 +26,10 @@ exception
 end;
 
 /
-/
 -- comments
 comment on column ${owner}.${name}.cod_gestao
  is 'código gestão do kss';
-comment on column ${owner}.${name}.${name}
+comment on column ${owner}.${name}.${name}_id
  is 'identificador';
 comment on column ${owner}.${name}.user_insert
  is 'auditoria';

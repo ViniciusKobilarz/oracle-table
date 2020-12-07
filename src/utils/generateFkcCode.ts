@@ -27,6 +27,5 @@ export default function generateFkcCode({ owner, name, abbreviation }: Params) {
          end if;
    end;
 end;
-/
 /`;
 }

@@ -6,12 +6,11 @@ interface Params {
 
 export default function generateViewCode({ owner, name, initial }: Params) {
   return `create or replace view ${owner}.v$${name} as
-select ${initial}.nome_id
+select ${initial}.${name}_id
      , ${initial}.user_insert
      , ${initial}.date_insert
      , ${initial}.user_update
      , ${initial}.date_update
-     , ${initial}.site
   from ${owner}.${name} ${initial}
  where ${initial}.cod_gestao = kss.getgestao;
 
